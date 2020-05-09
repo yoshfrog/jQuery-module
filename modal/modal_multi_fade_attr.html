@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+main {
+	height: 1000px;
+}
+.modal {
+	display: none;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	z-index: 2;
+	transform: translate(-50%, -50%);
+	width: 50vw;
+	max-height: 80vh;
+	overflow: auto;
+	background-color: #fff;
+}
+.overlay {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	background-color: rgba(0, 0, 0, .6);
+}
+</style>
+</head>
+<body>
+<main>
+
+<div class="open" data-target="modal-01">modal-01</div>
+<div class="open" data-target="modal-02">modal-02</div>
+
+<div class="modal" id="modal-01">
+	<p>modal-01 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore possimus accusamus id dolorem alias sunt, omnis consectetur odio soluta modi, temporibus ducimus reprehenderit magnam adipisci quae suscipit nemo? Molestias, blanditiis!</p>
+	<div class="close">CLOSE</div>
+</div>
+
+<div class="modal" id="modal-02">
+	<p>modal-02 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur culpa laudantium exercitationem consectetur facere voluptate quos non nesciunt quibusdam sapiente reprehenderit quidem cumque perferendis error, tempora quod adipisci earum. Animi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat officia nostrum suscipit quos quia recusandae, voluptate ipsa amet possimus tenetur inventore. Magnam dolore amet debitis dolorum facere! Tenetur, hic iusto? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita dignissimos vitae maxime ducimus perferendis laborum magni necessitatibus reiciendis quas voluptates iure, cum deleniti sequi praesentium aut ipsam qui explicabo inventore? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus tenetur asperiores ea, id aut in saepe non voluptate atque! Facilis, provident? Doloribus rerum omnis blanditiis molestiae eaque quisquam, fuga iure! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta aperiam rerum similique maxime exercitationem quibusdam amet? Temporibus porro, fugiat iure recusandae libero doloribus repellendus corporis alias commodi provident molestias voluptatum! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt distinctio aliquam vitae, odio eius odit corrupti unde magni soluta aperiam excepturi error maxime placeat ipsam culpa dignissimos beatae. Perferendis, suscipit! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus eveniet illo unde officiis mollitia, at numquam eius molestiae ea quam, odit nisi ab iusto saepe veritatis eligendi cupiditate porro est.</p>
+	<div class="close">CLOSE</div>
+</div>
+
+<div class="overlay"></div>
+
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(function(){
+	$('.overlay').hide();
+	$('.open').click(function(){
+		const target = '#' + $(this).attr('data-target');   //# + modal-01 文字列取得
+		$(target).fadeIn();            //取得文字列 (#modal-01) 含んだID名のタグをfadeIn
+		$('.overlay').fadeIn();
+	});
+	$('.close, .overlay').click(function(){
+		$('.modal').fadeOut();
+		$('.overlay').fadeOut();
+	});
+});
+</script>
+</body>
+</html>

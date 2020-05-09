@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<link rel="stylesheet" href="slick.css">
+<link rel="stylesheet" href="slick-theme.css">
+<style>
+* {
+	 margin: 0;
+	 padding: 0;
+     box-sizing: border-box;
+}
+.slider{
+    margin: 30px auto;
+    width: 100%;
+}
+
+/*slick*/
+.slick-prev{
+	left: 5%;
+	z-index:9999;
+}
+.slick-next{
+	right: 5%;
+}
+.slick-prev:before,
+.slick-next:before{
+    color: #fff;
+}
+</style>
+</head>
+<body>
+<main>
+	<ul class="slider">
+		<li><a href="#"><img src="https://unsplash.it/800/480"></a></li>
+		<li><a href="#"><img src="https://unsplash.it/800/480"></a></li>
+		<li><a href="#"><img src="https://unsplash.it/800/480"></a></li>
+		<li><a href="#"><img src="https://unsplash.it/800/480"></a></li>
+		<li><a href="#"><img src="https://unsplash.it/800/480"></a></li>
+	</ul>
+</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="slick.min.js"></script>
+<script>
+jQuery(function($){
+    $('.slider').slick({
+		centerMode: true,
+		centerPadding: '15%',
+		dots:true,
+        focusOnSelect:true, //クリックした要素にスライドする
+		arrow:true,
+    });
+});
+</script>
+</body>
+</html>

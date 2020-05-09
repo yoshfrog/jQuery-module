@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+main {
+	height: 1000px;
+}
+.modal {
+	display: none;
+	position: fixed;
+	width: 50vw;
+	max-height: 80vh;
+	overflow: auto;
+	z-index: 2;
+	background-color: #fff;
+}
+.overlay {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background: rgba(0,0,0,0.6);
+}
+</style>
+</head>
+<body>
+<main>
+
+<a class="open" href="#" data-target="modal-01">OPEN</a>
+
+<div id="modal-01" class="modal">
+	<p>modal-01 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore possimus accusamus id dolorem alias sunt, omnis consectetur odio soluta modi, temporibus ducimus reprehenderit magnam adipisci quae suscipit nemo? Molestias, blanditiis!</p>
+	<a class="switch" href="#" data-target="modal-03">modal-03</a>
+	<a class="switch" href="#" data-target="modal-02">modal-02</a>
+	<a class="close" href="#">CLOSE</i></a>
+</div><!--modal-->
+
+<div id="modal-02" class="modal">
+	<p>modal-02 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore possimus accusamus id dolorem alias sunt, omnis consectetur odio soluta modi, temporibus ducimus reprehenderit magnam adipisci quae suscipit nemo? Molestias, blanditiis!</p>
+	<a class="switch" href="#" data-target="modal-01">modal-01</a>
+	<a class="switch" href="#" data-target="modal-03">modal-03</a>
+	<a class="close" href="#">CLOSE</i></a>
+</div><!--modal-->
+
+<div id="modal-03" class="modal">
+	<p>modal-03 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore possimus accusamus id dolorem alias sunt, omnis consectetur odio soluta modi, temporibus ducimus reprehenderit magnam adipisci quae suscipit nemo? Molestias, blanditiis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam tenetur aliquid corrupti, sit maiores laborum minima eius numquam atque est? Debitis, modi asperiores excepturi reiciendis rerum praesentium repellendus reprehenderit dolor? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa sunt dignissimos temporibus possimus impedit veniam sed maxime, sint ipsum corporis sapiente quia vel adipisci labore, quaerat laborum! Nam, possimus. A! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est delectus, doloremque possimus rerum quo minima similique quaerat soluta nobis inventore obcaecati reprehenderit sunt quibusdam, aliquam qui sint numquam alias nemo. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium dicta deleniti, quaerat, perspiciatis itaque placeat culpa, enim magnam at assumenda dolorem? Minus necessitatibus laudantium velit dicta, in inventore magni modi. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo tempore aperiam exercitationem saepe quos doloribus eos ipsam enim, ullam recusandae quibusdam perspiciatis iusto incidunt voluptatem. Suscipit rerum harum repudiandae doloremque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi illum sint nam id ut. Facilis modi, ullam est aperiam incidunt quod. Omnis pariatur dolore exercitationem aperiam provident incidunt porro veniam!</p>
+	<a class="switch" href="#" data-target="modal-02">modal-02</a>
+	<a class="switch" href="#" data-target="modal-01">modal-01</a>
+	<a class="close" href="#">CLOSE</i></a>
+</div><!--modal-->
+
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(function(){
+	$('.open').click(function(){
+
+		const target = '#' + $(this).attr('data-target');
+		$('body').append('<div class="overlay"></div>');
+		$('.overlay').fadeIn();
+		$(target).fadeIn();
+		positionModal();
+
+		$('.overlay, .close').on('click', function(){
+			$('.modal,.overlay').fadeOut().promise().done(function() {
+				$('.overlay').remove();
+			});
+		});
+
+		$(window).on('resize', function(){                         //window幅の可変対応
+			positionModal();
+		});
+
+		function positionModal(){
+			const width = $(window).width();                       //windowの幅取得
+			const height = $(window).height();                     //windowの高さ取得
+			const modalWidth = $(target).outerWidth();             //modalの幅取得
+			const modalHeight = $(target).outerHeight();           //modalの高さ取得
+
+			$(target).css({
+				'left':((width - modalWidth) / 2) + 'px',         //modal外余白幅の半分の所に位置設定
+				'top':((height - modalHeight) / 2) + 'px'         //modal外余白高さの半分の所に位置設定
+			});
+		}
+
+		// switch モーダル切り替え
+		$('.switch').click(function(){
+			$(this).closest('.modal').fadeOut();                 //クリックされたmodalをfadeOut
+
+			const target = '#' + $(this).attr('data-target');
+			$(target).fadeIn();
+			positionModal();
+
+			$(window).on('resize', function(){                  //window幅の可変対応
+				positionModal();
+			});
+
+			function positionModal(){
+				const width = $(window).width();                //windowの幅取得
+				const height = $(window).height();              //windowの高さ取得
+				const modalWidth = $(target).outerWidth();      //modalの幅取得
+				const modalHeight = $(target).outerHeight();    //modalの高さ取得
+
+				$(target).css({
+					'left':((width - modalWidth) / 2) + 'px',   //modal外余白幅の半分の所に位置設定
+					'top':((height - modalHeight) / 2) + 'px'   //modal外余白高さの半分の所に位置設定
+				});
+			}
+
+		});
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	box-sizing: border-box;
+}
+.accordion_trigger {
+  background: #ddd;
+}
+.accordion_item {
+  background: #eee;
+}
+.accordion_subtrigger {
+  background: #c8c8c8;
+}
+.accordion_subitem {
+  background: #e8e8e8;
+}
+</style>
+</head>
+<body>
+<main>
+  <div>
+    <h1>多階層 複数開閉 dl</h1>
+    <dl class="accordion">
+      <dt class="accordion_trigger">accordion_trigger</dt>
+      <dd class="accordion_item">
+        <ul>
+          <li><a href="">accordion_item</a></li>
+          <li><a href="">accordion_item</a></li>
+          <li>
+            <p class="accordion_subtrigger">accordion_subtrigger</p>
+            <ul class="accordion_subitem">
+              <li><a href="">accordion_subitem</a></li>
+              <li><a href="">accordion_subitem</a></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dt class="accordion_trigger">accordion_trigger</dt>
+      <dd class="accordion_item">
+        <ul>
+          <li><a href="">accordion_item</a></li>
+          <li><a href="">accordion_item</a></li>
+          <li>
+            <p class="accordion_subtrigger">accordion_subtrigger</p>
+            <ul class="accordion_subitem">
+              <li><a href="">accordion_subitem</a></li>
+              <li><a href="">accordion_subitem</a></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+
+  <div>
+    <h1>多階層 複数開閉 ul</h1>
+    <ul class="accordion">
+      <li>
+        <p class="accordion_trigger">accordion_trigger</p>
+        <ul class="accordion_item">
+          <li><a href="">accordion_item</a></li>
+          <li><a href="">accordion_item</a></li>
+          <li>
+            <p class="accordion_subtrigger">accordion_subtrigger</p>
+            <ul class="accordion_subitem">
+              <li><a href="">accordion_subitem</a></li>
+              <li><a href="">accordion_subitem</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p class="accordion_trigger">accordion_trigger</p>
+        <ul class="accordion_item">
+          <li><a href="">accordion_item</a></li>
+          <li><a href="">accordion_item</a></li>
+          <li>
+            <p class="accordion_subtrigger">accordion_subtrigger</p>
+            <ul class="accordion_subitem">
+              <li><a href="">accordion_subitem</a></li>
+              <li><a href="">accordion_subitem</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+// accordion
+$(function () {
+	$('.accordion_item').hide();
+	$('.accordion_subitem').hide();
+	$('.accordion_trigger').on('click', function () {
+		$(this).next().slideToggle();
+	});
+	$('.accordion_subtrigger').on('click', function () {
+		$(this).next().slideToggle();
+	});
+});
+</script>
+</body>
+</html>

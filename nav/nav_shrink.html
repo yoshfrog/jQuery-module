@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>nav_shrink</title>
+<style>
+* {
+	 margin: 0;
+	 padding: 0;
+     box-sizing: border-box;
+}
+main {
+	height: 2000px;
+}
+header {
+	height: 300px;
+	background: #a0dee9;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	width: 100%;
+	transition: .3s;
+}
+.is-fixed {
+	height: 100px;
+}
+</style>
+</head>
+<body>
+  <header>header</header>
+  <main>main</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(function() {
+  var $win = $(window),
+      $header = $('header'),
+      fixedClass = 'is-fixed';
+
+  $win.on('load scroll', function() {
+    var value = $(this).scrollTop();
+    if ( value > 100 ) {
+      $header.addClass(fixedClass);
+    } else {
+      $header.removeClass(fixedClass);
+    }
+  });
+});
+</script>
+</body>
+</html>

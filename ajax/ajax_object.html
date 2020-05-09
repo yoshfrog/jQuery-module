@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+.block {
+  margin: 50px auto;
+}
+.wrap {
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  background-color: #f8f8f8;
+}
+.card {
+  padding: 30px 20px;
+  background-color:lavenderblush;
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>Ajax</h1>
+  <div id="output">
+
+    <!-- 出力結果
+    <div class="block">
+      <h2>Title</h2>
+      <div class="wrap">
+        <div class="card">
+          <h3>Card Title</h3>
+          <p><img src="https://picsum.photos/200/100" alt="Alt"></p>
+          <p>Text</p>
+        </div>
+        <div class="card">
+          <h3>Card Title</h3>
+          <p><img src="https://picsum.photos/200/100" alt="Alt"></p>
+          <p>Text</p>
+        </div>
+        <div class="card">
+          <h3>Card Title</h3>
+          <p><img src="https://picsum.photos/200/100" alt="Alt"></p>
+          <p>Text</p>
+        </div>
+      </div>
+    </div>
+    <div class="block">
+      <h2>Title</h2>
+      <div class="wrap">
+        <div class="card">
+          <h3>Card Title</h3>
+          <p><img src="https://picsum.photos/200/100" alt="Alt"></p>
+          <p>Text</p>
+        </div>
+        <div class="card">
+          <h3>Card Title</h3>
+          <p><img src="https://picsum.photos/200/100" alt="Alt"></p>
+          <p>Text</p>
+        </div>
+        <div class="card">
+          <h3>Card Title</h3>
+          <p><img src="https://picsum.photos/200/100" alt="Alt"></p>
+          <p>Text</p>
+        </div>
+      </div>
+    </div>
+    -->
+
+  </div><!-- /#output -->
+</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+$.getJSON("object.json", function(data){
+
+  for (let i in data) {
+    const output = $('#output');
+    const block = $('<div class="block"></div>');
+    const wrap = $('<div class="wrap"></div>');
+
+    for (let j in data[i].content) {
+      const card = $('<div class="card"></div>');
+      card.append('<h3>' + data[i].content[j].card + '</h3>')
+          .append('<p><img src="' + data[i].content[j].img + '" alt="' + data[i].content[j].alt + '">' + '</p>')
+          .append('<p>' + data[i].content[j].text + '</p>');
+      wrap.append(card);
+    }
+
+    block.append('<h2>' + data[i].title + '</h2>');
+    block.append(wrap);
+    output.append(block);
+  }
+
+});
+
+</script>
+
+</body>
+</html>

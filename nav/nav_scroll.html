@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>nav_scroll</title>
+<style>
+* {
+	 margin: 0;
+	 padding: 0;
+     box-sizing: border-box;
+}
+main {
+	height: 2000px;
+}
+header {
+	position: relative;
+	height: 100px;
+	background: #a0dee9;
+}
+nav {
+	height: 100px;
+	background: #b9e6dc;
+}
+.clone-nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	width: 100%;
+	transition: .3s;
+	transform: translateY(-100%);
+}
+.is-show {
+	transform: translateY(0);
+}
+</style>
+</head>
+<body>
+  <header>header</header>
+  <nav>nav</nav>
+  <main>main</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  $(function() {
+    var $win = $(window),
+        $cloneNav = $('nav').clone().addClass('clone-nav').appendTo('body'),
+        showClass = 'is-show';
+
+    $win.on('load scroll', function() {
+      var value = $(this).scrollTop();
+      if ( value > 500 ) {
+        $cloneNav.addClass(showClass);
+      } else {
+        $cloneNav.removeClass(showClass);
+      }
+    });
+  });
+</script>
+</body>
+</html>

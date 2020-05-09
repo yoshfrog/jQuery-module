@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+main {
+	height: 1000px;
+}
+.modal {
+	display: none;
+	position: fixed;
+	width: 50vw;
+	max-height: 80vh;
+	overflow: auto;
+	z-index: 2;
+	background: #fff;
+}
+.overlay {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,.7);
+	z-index: 1;
+}
+</style>
+</head>
+<body>
+<main>
+
+	<a class="open" href="#" data-target="modal-01">modal-01</a><br>
+	<a class="open" href="#" data-target="modal-02">modal-02</a>
+
+	<div class="modal" id="modal-01">
+		<p>modal-01 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore possimus accusamus id dolorem alias sunt, omnis consectetur odio soluta modi, temporibus ducimus reprehenderit magnam adipisci quae suscipit nemo? Molestias, blanditiis!</p>
+		<a class="close" href="#">CLOSE</a>
+	</div><!--modal-->
+
+	<div class="modal" id="modal-02">
+		<p>modal-02 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur culpa laudantium exercitationem consectetur facere voluptate quos non nesciunt quibusdam sapiente reprehenderit quidem cumque perferendis error, tempora quod adipisci earum. Animi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis adipisci sapiente quis nam aspernatur repellendus optio numquam minus, unde rem, quidem tenetur est facilis iure voluptas, corporis sit fugiat ipsam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quibusdam eius quas placeat. Possimus aliquam eligendi qui. Iure harum deserunt natus voluptatibus quasi, in rem debitis eaque aliquam quibusdam dolorum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum molestias, recusandae quaerat cumque repellat, dicta corporis officia, blanditiis hic nisi libero. Quas inventore nesciunt voluptas dicta voluptatem dignissimos minima magnam. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam similique quas incidunt deleniti nesciunt saepe placeat dolores tenetur non ratione at magni natus sequi, ullam aperiam fugit sint delectus blanditiis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis sequi nam quas dignissimos! Eos molestias temporibus voluptas deleniti placeat ipsam eum. Quo, aut amet. Architecto quaerat minus doloribus necessitatibus magnam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci a, nisi possimus explicabo perferendis esse tenetur dolores accusantium. Aliquid blanditiis repellendus magnam, illo quidem vero autem reiciendis. Earum, libero veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ut nobis veniam minima ex! Necessitatibus, delectus a! Commodi sequi explicabo, officia impedit doloremque consectetur molestias quis aperiam earum, iusto nemo.</p>
+		<a class="close" href="#">CLOSE</a>
+	</div><!--modal-->
+
+	<div class="overlay"></div>
+
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(function(){
+	$('.open').each(function(){
+		$(this).on('click',function(e){
+			e.preventDefault();
+			const target = $(this).data('target');               //modal-01  文字列取得
+			const id = document.getElementById(target);          //取得文字列含んだID名のタグ取得
+			$(id).fadeIn();
+			$('.overlay').fadeIn();
+			positionModal();
+
+			$(window).on('resize',function(){                    //window幅の可変対応
+				positionModal();
+			});
+
+			function positionModal() {
+				const width = $(window).width();                 //windowの幅取得
+				const height = $(window).height();               //windowの高さ取得
+				const modalWidth = $(id).outerWidth();           //modalの幅取得
+				const modalHeight = $(id).outerHeight();         //modalの高さ取得
+
+				$(id).css({
+					'left':((width - modalWidth) / 2) + 'px',   //modal外余白幅の半分の所に位置設定
+					'top':((height - modalHeight) / 2) + 'px'   //modal外余白高さの半分の所に位置設定
+				});
+			}
+
+		});
+	});
+
+	$('.close, .overlay').on('click',function(e){
+		e.preventDefault();
+		$('.modal, .overlay').fadeOut();
+	});
+
+});
+</script>
+</body>
+</html>

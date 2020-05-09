@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	box-sizing: border-box;
+}
+.show {
+	display: block !important;
+}
+.tab-wrap {
+	width: 80vw;
+	margin: 10vh auto;
+}
+.tab-list {
+	display: flex;
+	border: 1px solid #ccc;
+	border-bottom: none;
+}
+.tab-list li {
+	width: 25vw;
+	padding: 1em 0;
+	text-align: center;
+	transition: .3s;
+	border-bottom: 1px solid #ccc;
+}
+.tab-list li:not(:first-child) {
+	border-left: 1px solid #ccc;
+}
+.tab-list li.active {
+	margin-bottom: 0;
+	color: #fff;
+	background: #999;
+	border-bottom: none;
+}
+.tab-contents {
+	border: 1px solid #ccc;
+	border-top: none;
+}
+.tab-contents > div {
+	padding: 1em;
+}
+</style>
+</head>
+<body>
+<main>
+	<div class="tab-wrap">
+		<ul class="tab-list">
+			<li>Tab A</li>
+			<li>Tab B</li>
+			<li>Tab C</li>
+			<li>Tab D</li>
+		</ul>
+		<div class="tab-contents">
+			<div>tab-contents A</div>
+			<div>tab-contents B<br>tab-contents B</div>
+			<div>tab-contents C<br>tab-contents C</div>
+			<div>tab-contents D<br>tab-contents D<br>tab-contents D</div>
+		</div><!--tab-contents-->
+	</div><!--tab-wrap-->
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(function () {
+	$('.tab-list li').eq(0).addClass('active'); //初期値 タブの先頭をアクティブ
+	$('.tab-contents div:not(:eq(0))').hide(); //初期値 タブコンテンツ先頭以外非表示
+
+	$('.tab-list li').on('click', function () {
+		var index = $(this).index(); //this->clicked selector（li）のindexを取得
+		$('.tab-list li').removeClass('active');
+		$(this).addClass('active'); //this->clicked selector（li）をアクティブ
+
+		//取得したliのindex番号と同じtab-contentsのindex番号のコンテンツを処理
+		$('.tab-contents > div').hide().eq(index).fadeIn(1000);
+
+	});
+});
+</script>
+</body>
+</html>

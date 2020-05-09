@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+main {
+	height: 1000px;
+}
+.overlay {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,.6);
+	z-index: 1;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	width: 50vw;
+	height: auto;
+	background: #fff;
+	z-index: 2;
+}
+
+</style>
+</head>
+<body>
+<main>
+
+	<a class="open" href="#">OPEN</a>
+
+	<div class="modal">
+		<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis tempora temporibus eligendi hic consequuntur velit odit ducimus, incidunt enim voluptatem tenetur optio aperiam totam dolorum exercitationem nesciunt, eos quas vero.</p>
+		<a class="close" href="">CLOSE</a>
+	</div>
+
+	<div class="overlay"></div>
+
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(function(){
+	$('.open').on('click',function(e){
+		e.preventDefault();
+		$('.overlay, .modal').fadeIn();
+		positionModal();
+
+		$(window).on('resize',function(){   //window幅の可変対応
+			positionModal();
+		});
+		$('.close, .overlay').on('click',function(e){
+			e.preventDefault();
+			$('.overlay, .modal').fadeOut();
+		});
+	});
+
+	function positionModal() {
+		const width = $(window).width();                //windowの幅取得
+		const height = $(window).height();              //windowの高さ取得
+		const modalWidth = $('.modal').outerWidth();    //modalの幅取得
+		const modalHeight = $('.modal').outerHeight();  //modalの高さ取得
+
+		$('.modal').css({
+			'left':((width - modalWidth) / 2) + 'px',   //modal外余白幅の半分の所に位置設定
+			'top':((height - modalHeight) / 2) + 'px'   //modal外余白高さの半分の所に位置設定
+		});
+	}
+});
+</script>
+</body>
+</html>

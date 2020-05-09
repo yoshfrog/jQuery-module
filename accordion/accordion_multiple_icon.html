@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+<title></title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	box-sizing: border-box;
+}
+.accordion_trigger {
+  background: #ddd;
+}
+.accordion_item {
+  background: #eee;
+}
+
+.icon {
+  position: relative;
+}
+
+.icon:after {
+  font-family: "Font Awesome 5 Free";
+  font-size: 1rem;
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.icon.open:after {
+  font-family: "Font Awesome 5 Free";
+}
+
+.icon01:after {
+  content: '\f107';
+}
+
+.icon01.open:after {
+  content: '\f106';
+}
+
+.icon02:after {
+  content: '\f067';
+  -webkit-transform: translateY(-50%) rotate(90deg);
+  transform: translateY(-50%) rotate(90deg);
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.icon02.open:after {
+  content: '\f068';
+  -webkit-transform: translateY(-50%) rotate(0deg);
+  transform: translateY(-50%) rotate(0deg);
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+</style>
+</head>
+<body>
+<main>
+  <div>
+    <h1>複数開閉 アイコン ^ dl</h1>
+    <dl class="accordion">
+      <dt class="accordion_trigger icon icon01">accordion_trigger</dt>
+      <dd class="accordion_item">
+        <ul>
+          <li><a href="">accordion_item</a></li>
+          <li><a href="">accordion_item</a></li>
+        </ul>
+      </dd>
+      <dt class="accordion_trigger icon icon01">accordion_trigger</dt>
+      <dd class="accordion_item">
+        <ul>
+          <li><a href="">accordion_item</a></li>
+          <li><a href="">accordion_item</a></li>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+
+  <div>
+    <h1>複数開閉 アイコン +- dl</h1>
+    <dl class="accordion">
+      <dt class="accordion_trigger icon icon02">accordion_trigger</dt>
+      <dd class="accordion_item">
+        <ul>
+          <li><a href="">accordion_item</a></li>
+          <li><a href="">accordion_item</a></li>
+        </ul>
+      </dd>
+      <dt class="accordion_trigger icon icon02">accordion_trigger</dt>
+      <dd class="accordion_item">
+        <ul>
+          <li><a href="">accordion_item</a></li>
+          <li><a href="">accordion_item</a></li>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+// accordion
+$(function () {
+	$('.accordion_item').hide();
+	$('.accordion_trigger').on('click', function () {
+		$(this).next().slideToggle();
+		$(this).toggleClass('open');
+	});
+});
+
+</script>
+</body>
+</html>

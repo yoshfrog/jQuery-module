@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+	box-sizing: border-box;
+}
+.mega-menu {
+	position: relative;
+	width: 80vw;
+	margin: 10vw auto;
+}
+.mega-menu ul {
+	display: flex;
+	justify-content: space-around;
+}
+.mega-menu li {
+	position: relative;
+	width: 20%;
+	transition: .5s;
+	text-align: center;
+	background: #ccc;
+}
+.mega-content {
+	display: none;
+	position: absolute;
+	width: 100%;
+	top: 100%;
+	left: 0;
+	margin: 0 auto;
+	z-index: 1;
+	background: #ddd;
+}
+.mega-content > div{
+	padding: .5em;
+}
+</style>
+</head>
+<body>
+<main>
+	<nav class="mega-menu">
+		<ul>
+			<li>mega-menu_01
+				<div class="mega-content">
+					<div class="mega-inner">
+						mega-content_01
+					</div>
+				</div>
+			</li>
+			<li>mega-menu_02
+				<div class="mega-content">
+					<div class="mega-inner">
+						mega-content_02<br>mega-content_02<br>mega-content_02
+					</div>
+				</div>
+			</li>
+			<li>mega-menu_03
+				<div class="mega-content">
+					<div class="mega-inner">
+						mega-content_03<br>mega-content_03
+					</div>
+				</div>
+			</li>
+			<li>mega-menu_04
+				<div class="mega-content">
+					<div class="mega-inner">
+						mega-content_04
+					</div>
+				</div>
+			</li>
+			<li>mega-menu_05
+				<div class="mega-content">
+					<div class="mega-inner">
+						mega-content_05<br>mega-content_05
+					</div>
+				</div>
+			</li>
+		</ul>
+	</nav>
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(function () {
+	$('.mega-menu li').hover(function () {
+		$(this).find('.mega-content').stop().fadeToggle();
+	});
+});
+</script>
+</body>
+</html>

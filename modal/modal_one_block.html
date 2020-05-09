@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+main {
+	height: 1000px;
+}
+.overlay {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	background-color: rgba(0, 0, 0, .6);
+}
+.modal {
+	display: none;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	z-index: 2;
+	transform: translate(-50%, -50%);
+	width: 50vw;
+	background-color: #fff;
+}
+.active {
+	display: block !important;
+}
+</style>
+</head>
+<body>
+<main>
+<a class="open" href="#">OPEN</a>
+<div class="modal">
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta tempora odio sit, fuga amet debitis aliquam natus a quas quaerat laborum dolores, molestiae ducimus eligendi veniam? Autem porro debitis a.
+	<a class="close" href="#">CLOSE</a>
+</div><!--modal-->
+<div class="overlay"></div>
+
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(function(){
+	$(".open").on("click", function(e) {
+		e.preventDefault();
+		$(".overlay, .modal").addClass("active");
+	});
+	$(".close, .overlay").on("click", function() {
+		$(".overlay, .modal").removeClass("active");
+		return false;
+	});
+});
+</script>
+</body>
+</html>

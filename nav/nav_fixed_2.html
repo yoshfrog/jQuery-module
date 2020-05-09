@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>nav_fixed_2</title>
+<style>
+* {
+	 margin: 0;
+	 padding: 0;
+     box-sizing: border-box;
+}
+main {
+	height: 2000px;
+}
+header {
+	position: relative;
+	height: 100px;
+	background: #a0dee9;
+}
+nav {
+	height: 100px;
+	background: #b9e6dc;
+	transition:.5s;
+}
+footer {
+	height: 100px;
+	background: #ccc;
+}
+.is-fixed {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+}
+.is-hide {
+	transform: translateY(-100%);
+}
+</style>
+</head>
+<body>
+  <header>header</header>
+  <nav>nav</nav>
+  <main>main</main>
+
+  <footer>footer</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  $(function() {
+    var $win = $(window),
+        $main = $('main'),
+        $nav = $('nav'),
+        navHeight = $nav.outerHeight(),
+        footerHeight = $('footer').outerHeight(),
+        docmentHeight = $(document).height(),
+        navPos = $nav.offset().top,
+        fixedClass = 'is-fixed',
+        hideClass = 'is-hide';
+
+    $win.on('load scroll', function() {
+      var value = $(this).scrollTop(),
+          scrollPos = $win.height() + value;
+
+      if ( value > navPos ) {
+        if ( docmentHeight - scrollPos <= footerHeight ) {
+          $nav.addClass(hideClass);
+        } else {
+          $nav.removeClass(hideClass);
+        }
+        $nav.addClass(fixedClass);
+        $main.css('margin-top', navHeight);
+      } else {
+        $nav.removeClass(fixedClass);
+        $main.css('margin-top', '0');
+      }
+    });
+  });
+</script>
+</body>
+</html>

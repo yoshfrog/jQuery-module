@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+* {margin: 0; padding: 0; list-style: none;}
+.sort-btn {
+	display: flex;
+}
+.sort-btn li {
+	width: 100px;
+	text-align: center;
+	border: 1px solid #333;
+}
+.sort-content {
+	display: flex;
+	flex-wrap: wrap;
+}
+.sort-content > div {
+	width: 32vw;
+	margin:.5vw;
+	background: #EDEDDF;
+	animation: scale .8s ease-out;
+}
+@-webkit-keyframes scale {
+	0% {transform: scale(.5);}
+	100% {transform: scale(1);}
+}
+@keyframes scale {
+	0% {transform: scale(.5);}
+	100% {transform: scale(1);}
+}
+</style>
+</head>
+<body>
+<ul class="sort-btn">
+	<li class="btn-sort01">btn-sort01</li>
+	<li class="btn-sort02">btn-sort02</li>
+	<li class="btn-sort03">btn-sort03</li>
+	<li class="btn-sortAll">btn-sortAll</li>
+</ul>
+<div class="sort-content">
+	<div class="sort01">sort01</div>
+	<div class="sort03">sort03<br>sort03<br>sort03</div>
+	<div class="sort02">sort02</div>
+	<div class="sort02">sort02<br>sort02<br>sort02<br>sort02</div>
+	<div class="sort01">sort01<br>sort01<br>sort01<br>sort01<br>sort01</div>
+	<div class="sort03">sort03<br>sort03</div>
+	<div class="sort01">sort01</div>
+	<div class="sort01">sort01<br>sort01<br>sort01<br>sort01</div>
+	<div class="sort02">sort02<br>sort02</div>
+	<div class="sort01">sort01<br>sort01</div>
+	<div class="sort03">sort03</div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+$(function(){
+	$('.sort-btn li').each(function(){
+		$(this).click(function(){
+			let btnname = $(this).attr("class").substring(4).toLowerCase(); //btn-削除 小文字に変換
+			let classname = '.';
+			classname += btnname;          //. + btnname
+			$('.sort-content > div').hide();
+
+			setTimeout(function(){         // 先頭コンテンツが先に表示されるため間を置く
+				if(btnname == 'sortall') {
+					$('.sort-content > div').finish().fadeIn(500); //finish:アニメーションを途中で止める（マルチボタン押下用）
+				} else {
+					$('.sort-content div:not(classname)').hide(); //クリックされたclassname以外を非表示
+					$(classname).finish().fadeIn(500);
+				}
+			},100);
+
+		});
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<link rel="stylesheet" href="slick.css">
+<link rel="stylesheet" href="slick-theme.css">
+<style>
+* {
+	 margin: 0;
+	 padding: 0;
+     box-sizing: border-box;
+}
+main {
+	position: relative;
+}
+h1 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 40vw;
+	height: 20vh;
+	color: #fff;
+	background: rgba(0,0,0,.5);
+	z-index: 9999;
+}
+.slider{
+    margin: 30px auto;
+    width: 80%;
+}
+.slider img{
+	height: auto;
+	width: 100%;
+}
+
+/*slick*/
+
+</style>
+</head>
+<body>
+<main>
+	<h1>Lorem</h1>
+	<ul class="slider">
+		<li><a href="#"><img src="https://unsplash.it/800/480"></a></li>
+		<li><a href="#"><img src="https://unsplash.it/800/480"></a></li>
+		<li><a href="#"><img src="https://unsplash.it/800/480"></a></li>
+		<li><a href="#"><img src="https://unsplash.it/800/480"></a></li>
+		<li><a href="#"><img src="https://unsplash.it/800/480"></a></li>
+	</ul>
+</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="slick.min.js"></script>
+<script>
+jQuery(function($){
+    $('.slider').each(function(){
+		$(this).slick({
+			fade:true,
+			autoplay:true,
+			autoplaySpeed:3000,
+			dots:false,
+			speed: 2000,
+
+		});
+	});	
+});	
+</script>
+</body>
+</html>

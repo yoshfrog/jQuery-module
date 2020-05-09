@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>header_fixed</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+main {
+	height: 1000px;
+}
+.header {
+	position: relative;
+	padding: 30px 0;
+	background:#f3f3f3;
+}
+.header.fixed {
+	visibility: hidden;
+	width: 100%;
+	position: fixed;
+	left: 0;
+	z-index: 9999;
+	transform: translate(0, -100%);
+	transition: 0.2s;
+	background: #d7f0fc;
+}
+.header.fixed.is-fixed {
+	visibility: visible;
+	transform: translate(0, 0);
+}
+</style>
+</head>
+<body>
+<main>
+	<header class="header">header</header>
+	<div class="header fixed">header fixed</div>
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+jQuery(document).ready(function($){
+	// ヘッダー固定
+	var $win = $(window),
+		$main = $('main'),
+		$nav = $('.header.fixed'),
+		navPos = $main.offset().top,
+		fixedClass = 'is-fixed';
+
+	$win.on('load scroll', function() {
+		var value = $(this).scrollTop();
+
+		if ( value > navPos ) {
+			$nav.addClass(fixedClass);
+			$nav.css('cssText', 'top: 0;');
+
+		} else {
+			$nav.removeClass(fixedClass);
+		}
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	overflow-x: hidden;
+}
+img { max-width: 100%; }
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 700px;
+  margin: 100px auto;
+}
+.flex > div {
+  width: 300px;
+  margin: auto;
+}
+.scroll-anim {
+  position: relative;
+  color: transparent;
+}
+.scroll-anim img {
+  opacity: 0;
+}
+.scroll-anim:after {
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: #000;
+}
+.scroll-anim.active {
+  animation: anim-color 1s both;
+}
+.scroll-anim.active:after {
+  animation: anim-bg 1s both;
+}
+.scroll-anim.active img {
+  animation: anim-img 1s both;
+}
+@keyframes anim-color {
+  0%, 50% { color: transparent; }
+  51%, 100% { color: #000; }
+}
+@keyframes anim-bg {
+  0% { left: 0; right: 100%; }
+  50% { left: 0; right: 0; }
+  100% { left: 100%; right: 0; }
+}
+@keyframes anim-img {
+  0%, 50% { opacity: 0; }
+  51%, 100% { opacity: 1; }
+}
+</style>
+</head>
+<body>
+<main>
+scroll down↓
+
+  <div class="flex">
+    <div class="scroll-anim"><img src="https://unsplash.it/300/160"></div>
+    <div class="scroll-anim"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat perferendis numquam vitae corrupti autem perspiciatis ex odio consequuntur? Velit nobis quae sequi doloribus aliquam commodi natus quam, aliquid officia nesciunt!</p></div>
+  </div>
+  <div class="flex">
+    <div class="scroll-anim"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat perferendis numquam vitae corrupti autem perspiciatis ex odio consequuntur? Velit nobis quae sequi doloribus aliquam commodi natus quam, aliquid officia nesciunt!</p></div>
+    <div class="scroll-anim"><img src="https://unsplash.it/300/160"></div>
+  </div>
+  <div class="flex">
+    <div class="scroll-anim"><img src="https://unsplash.it/300/160"></div>
+    <div class="scroll-anim"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat perferendis numquam vitae corrupti autem perspiciatis ex odio consequuntur? Velit nobis quae sequi doloribus aliquam commodi natus quam, aliquid officia nesciunt!</p></div>
+  </div>
+  <div class="flex">
+    <div class="scroll-anim"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat perferendis numquam vitae corrupti autem perspiciatis ex odio consequuntur? Velit nobis quae sequi doloribus aliquam commodi natus quam, aliquid officia nesciunt!</p></div>
+    <div class="scroll-anim"><img src="https://unsplash.it/300/160"></div>
+  </div>
+  <div class="flex">
+    <div class="scroll-anim"><img src="https://unsplash.it/300/160"></div>
+    <div class="scroll-anim"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat perferendis numquam vitae corrupti autem perspiciatis ex odio consequuntur? Velit nobis quae sequi doloribus aliquam commodi natus quam, aliquid officia nesciunt!</p></div>
+  </div>
+
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(function(){
+    $(window).scroll(function (){                         //windowがスクロールされたら処理実行
+        $('.scroll-anim').each(function(){
+            const position = $(this).offset().top;          //ページの最上部からコンテンツまでの距離取得
+            const scroll = $(window).scrollTop();           //スクロールした量を取得
+            const windowHeight = $(window).height();        //windowの高さを取得
+            if (scroll > position - windowHeight + windowHeight/5){  //スクロール量が要素の位置+200 を超えたとき
+                $(this).addClass('active');
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

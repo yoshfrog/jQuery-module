@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>Ajax</h1>
+  <div id="output">
+
+  <!-- 出力結果
+  <dl>
+    <dt>Title 1</dt>
+    <dd>Text 1</dd>
+    <dt>Title 2</dt>
+    <dd>Text 2</dd>
+    <dt>Title 3</dt>
+    <dd>Text 3</dd>
+  </dl>
+  -->
+
+  </div><!-- /#output -->
+</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+$.getJSON("item.json", function(data){
+
+  const dl = $('<dl></dl>');
+
+  for(let i=0; i < data.length; i++){
+    $(dl).append("<dt>" + data[i].title + "</dt>")
+         .append("<dd>" + data[i].text + "</dd>");
+  }
+
+  $("#output").append(dl);
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+* {margin: 0; padding: 0; list-style: none;}
+.sort-btn {
+	display: flex;
+}
+.sort-btn li {
+	width: 100px;
+	text-align: center;
+	border: 1px solid #333;
+}
+.sort-content {
+	display: flex;
+	flex-wrap: wrap;
+}
+.sort-content > div {
+	width: 32vw;
+	margin:.5vw;
+	background: #EDEDDF;
+}
+</style>
+</head>
+<body>
+<ul class="sort-btn">
+	<li class="btn-sort01">btn-sort01</li>
+	<li class="btn-sort02">btn-sort02</li>
+	<li class="btn-sort03">btn-sort03</li>
+	<li class="btn-sortAll">btn-sortAll</li>
+</ul>
+<div class="sort-content">
+	<div class="sort01 sortall">sort01</div>
+	<div class="sort03 sortall">sort03<br>sort03<br>sort03</div>
+	<div class="sort02 sortall">sort02</div>
+	<div class="sort02 sortall">sort02<br>sort02<br>sort02<br>sort02</div>
+	<div class="sort01 sortall">sort01<br>sort01<br>sort01<br>sort01<br>sort01</div>
+	<div class="sort03 sortall">sort03<br>sort03</div>
+	<div class="sort01 sortall">sort01</div>
+	<div class="sort01 sortall">sort01<br>sort01<br>sort01<br>sort01</div>
+	<div class="sort02 sortall">sort02<br>sort02</div>
+	<div class="sort01 sortall">sort01<br>sort01</div>
+	<div class="sort03 sortall">sort03</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+$(function(){
+	$('.sort-btn li').each(function(){
+		$(this).click(function(){
+			let btnname = $(this).attr("class").substring(4).toLowerCase(); //btn-削除 小文字に変換
+			let classname = '.';
+			classname += btnname; //. + btnname
+			$('.sort-content div:not(classname)').finish().css('display','none'); //クリックされたclassname以外を非表示
+			$(classname).fadeIn(500);
+		});
+	});
+});
+</script>
+</body>
+</html>
